@@ -12,46 +12,31 @@ namespace miPrimerProyecto
         static void Main(string[] args)
         {
             //Uso de funciones...
-            Console.WriteLine("La suma de 10+5={0}", suma());
             //ejercicio encontrar la media aritmetica y la desviacion tipica de una seria de numeros.
 
-            Console.Write("Num 1: ");
-            int num1 = int.Parse(Console.ReadLine());
-            Console.Write("Num 2: ");
-            int num2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("La suma de {0}+{1}={2}", num1, num2, suma(num1, num2));
-            int[] serie = new int[] { 1, 2, 3, 4, 5 };
-            Console.WriteLine("La media aritmetica es: {0}, y la desviacion tipica es: {1}", media(serie), tipica(serie));
+            Console.Write("Ingrese la serie de numeros separados por comas: ");
+            String serie = Console.ReadLine();
+            String[] numeros = serie.Split(',');
+
+            Console.WriteLine("La media aritmetica es: {0}, y la desviacion tipica es: {1}", media(numeros), tipica(numeros));
+            Console.WriteLine("La media aritmetica es: {0}, y la desviacion tipica es: {1}, la media armonica es: {2}",
+                media(numeros), tipica(numeros), armonica(numeros));
 
             Console.ReadLine();
         }
-        static int suma()
-        {
-            int respuesta = 10 + 5;
-            return respuesta;
-            static double media(int[] serie)
-            {
-                double media = 0;
-                foreach (int num in serie)
-                {
-                    media += num;
-                }
-                return media / serie.Length;
-            }
-            static int suma(int a, int b)
-            {
-                int respuesta = a + b;
-                return respuesta;
-                static double tipica(int[] serie)
-                {
-                    double tipica = 0,
-                            m = media(serie);
-                    foreach (int num in serie)
-                    {
-                        tipica += Math.Pow(num - m, 2);
-                    }
-                    tipica = Math.Sqrt(tipica / serie.Length);
-                    return Math.Round(tipica, 2);
-                }
-            }
+@@ -35,5 +36,13 @@
+            tipica = Math.Sqrt(tipica/serie.Length);
+            return Math.Round(tipica,2);
         }
+    static double armonica(string[] serie)
+    {
+        double armonica = 0;
+        foreach (string num in serie)
+        {
+            armonica += (1.0 / double.Parse(num));
+        }
+        armonica = serie.Length / armonica;
+        return Math.Round(armonica, 2);
+    }
+}
+}
