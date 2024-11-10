@@ -16,12 +16,10 @@ namespace miPrimerProyecto
             string continuar = "s";
             while (continuar == "s")
             {
-                Console.WriteLine("*** MENU ***");
                 Console.WriteLine("\n\n *** MENU ***");
                 Console.WriteLine("1. Promedio Notas");
                 Console.WriteLine("2. Promedio Serie Numeros");
                 Console.WriteLine("3. Clasificacion edad");
-                Console.WriteLine("4. Salir");
                 Console.WriteLine("4. Tabla Multiplicar");
                 Console.WriteLine("5. Salir");
                 Console.Write("Opcion: ");
@@ -31,11 +29,13 @@ namespace miPrimerProyecto
                 {
                     case 1://if(opcion==1)
                         promedio();
-@@ -29,7 + 31,10 @@
+                        break;
+                    case 2: //if(opcion==2)
+                        promedioSerie();
+                        break;
                     case 3://if(opcion==3)
                         clasificacionEdad();
                         break;
-                    case 4://if(opcion==4)
                     case 4:
                         tablaMultiplicar();
                         break;
@@ -43,7 +43,8 @@ namespace miPrimerProyecto
                         continuar = "n";
                         break;
                     default://else
-@@ -38,59 + 43,66 @@
+                        Console.WriteLine("opcion incorrecta \n\n");
+                        break;
                 }
             }
         }
@@ -60,25 +61,18 @@ namespace miPrimerProyecto
         {
             Console.Write("Lab1: ");
             double lab1 = double.Parse(Console.ReadLine());
-
             Console.Write("Lab2: ");
             double lab2 = double.Parse(Console.ReadLine());
-
             Console.Write("Parcial 1: ");
             double parcial1 = double.Parse(Console.ReadLine());
-
             double c1 = lab1 * 30 / 100 + lab2 * 30 / 100 + parcial1 * 40 / 100;
             Console.WriteLine("La nota de C1 es: {0}", c1);
-
             Console.Write("Lab1: ");
             lab1 = double.Parse(Console.ReadLine()); //8
-
             Console.Write("Lab2: ");
             lab2 = double.Parse(Console.ReadLine()); //9
-
             Console.Write("Parcial 1: ");
             parcial1 = double.Parse(Console.ReadLine()); //7
-
             double c2 = lab1 * 30 / 100 + lab2 * 30 / 100 + parcial1 * 40 / 100;
             Console.WriteLine("La nota de C2 es: {0}", c2);
         }
@@ -97,7 +91,6 @@ namespace miPrimerProyecto
         {
             Console.Write("Edad: ");
             int edad = int.Parse(Console.ReadLine());
-
             if (edad < 0)
             {
                 Console.WriteLine("Edad incorrecta.");
@@ -126,6 +119,11 @@ namespace miPrimerProyecto
             {
                 Console.WriteLine("Larga vida");
             }
+            //Uso de matrices.
+            int[] numeros = new int[] { 2, 8, 9, 10, 1, 3 };
+            Console.WriteLine("El numero de la posicion 3 es {0}", numeros[3]);
+            //Pausa
+            Console.ReadKey();
         }
     }
 }
