@@ -12,7 +12,6 @@ namespace miPrimerProyecto
         static void Main(string[] args)
         {
             //Uso de matrices. Calcular el suelo de una persona.
-
             double[,] matriz = new double[,] {
                 {0.01,   487.6,  0, 0},
                 {487.61, 642.85, 10,17.48},
@@ -23,24 +22,39 @@ namespace miPrimerProyecto
             Console.Write("Sueldo: ");
             double sueldo = double.Parse(Console.ReadLine()),
                 afp = sueldo * 6.25 / 100,
-                isss = sueldo * 3 / 100;
-            isss = sueldo * 3 / 100,
+                isss = sueldo * 3 / 100,
                 isr = 0;
             sueldo -= afp;
-
-            double isr = 0;
             for (int i = 0; i < 5; i++)
             {
                 if (sueldo >= matriz[i, 0] && sueldo <= matriz[i, 1])
                 {
                     isr = (sueldo - (matriz[i, 0] - 0.01)) * matriz[i, 2] / 100 + matriz[i, 3];
                 }
+                //obtener la secuencia fibonacci
+                int a = 0, b = 1, c = 1;
+                /*
+                 a+b=c
+                 0+1=1
+                 1+0=1
+                 1+1=2
+                 2+1=3
+                 3+2=5
+                 5+3=8
+                 8+5=13
+                ...
+                 */
+                while (c < 100)
+                {
+                    Console.WriteLine("{0}+{1}={2}", a, b, c);
+                    b = a;
+                    a = c;
+                    c = a + b;
+                }
+                sueldo -= isss;
+                sueldo -= isr;
+                Console.WriteLine("Sueldo Neto: {0}, AFP: {1}, ISSS: {2}, ISR: {3}", Math.Round(sueldo, 2), afp, isss, Math.Round(isr, 2));
+                Console.ReadLine();
             }
-            sueldo -= isss;
-            sueldo -= isr;
-            Console.WriteLine("Sueldo Neto: {0}, AFP: {1}, ISSS: {2}, ISR: {3}", Math.Round(sueldo, 2), afp, isss, Math.Round(isr, 2));
-
-            Console.ReadLine();
         }
-    }
-}
+‎miPrimerProyecto/miPrimerProy
