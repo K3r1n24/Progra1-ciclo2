@@ -11,32 +11,27 @@ namespace miPrimerProyecto
     {
         static void Main(string[] args)
         {
-            //obtener la secuencia fibonacci
-            int a = 0, b = 1, c = 1;
-            /*
-             a+b=c
-             0+1=1
-             1+0=1
-             1+1=2
-             2+1=3
-             3+2=5
-             5+3=8
-             8+5=13
-            ...
-             */
-            while (c < 100)
+            //determinar si cada numero de la serie es para o impar.
+            int[] serie = new int[] { 5, 9, 4, 6, 3, 2 };
+            //determinar si cada numero de la serie es primo.
+
+            int[] serie = new int[] { 5, 9, 4, 6, 3, 2, 7, 11, 15, 17, 21 };
+            foreach (int num in serie)
             {
-                Console.WriteLine("{0}+{1}={2}", a, b, c);
-                b = a;
-                a = c;
-                c = a + b;
-                //determinar si cada numero de la serie es para o impar.
-                int[] serie = new int[] { 5, 9, 4, 6, 3, 2 };
-                foreach (int num in serie)
+                Console.WriteLine("El num {0} es {1}", num, num % 2 == 0 ? "Par" : "Impar");
+                int i = 1,
+                    n = 0;
+                while (i <= num && n <= 2)
                 {
-                    Console.WriteLine("El num {0} es {1}", num, num % 2 == 0 ? "Par" : "Impar");
+                    if (num % i == 0)
+                    {
+                        n++;//n=n+1
+                    }
+                    i++; //i=i+1
                 }
-                Console.ReadLine();
+                Console.WriteLine("EL numero {0} {1}", num, n <= 2 ? "es primo" : "NO es primo");
             }
+            Console.ReadLine();
         }
     }
+}
