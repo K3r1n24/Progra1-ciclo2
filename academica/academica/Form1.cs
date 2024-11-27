@@ -34,6 +34,8 @@ namespace academica {
         private void Form1_Load(object sender, EventArgs e) {
             actualizarDs();
         }
+
+
         private void actualizarDs() {
             ds.Clear();
             ds = objConexion.obtenerDatos();
