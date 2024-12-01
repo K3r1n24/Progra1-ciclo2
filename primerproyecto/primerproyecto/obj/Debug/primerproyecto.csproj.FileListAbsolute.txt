@@ -1,7 +1,0 @@
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\bin\Debug\primerproyecto.exe.config
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\bin\Debug\primerproyecto.exe
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\bin\Debug\primerproyecto.pdb
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\obj\Debug\primerproyecto.csproj.AssemblyReference.cache
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\obj\Debug\primerproyecto.csproj.CoreCompileInputs.cache
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\obj\Debug\primerproyecto.exe
-C:\Users\kerin\Desktop\Progra1-ciclo2\primerproyecto\primerproyecto\obj\Debug\primerproyecto.pdb

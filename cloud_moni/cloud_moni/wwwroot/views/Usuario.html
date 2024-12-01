@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cloud Moni - Registro</title>
+    <style>
+        body {
+            font-family: Georgia, sans-serif;
+            background: url('ruta_de_tu_imagen') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="tel"], button {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .cancel-btn {
+            background-color: #6c757d;
+        }
+
+            .cancel-btn:hover {
+                background-color: #5a6268;
+            }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>My Cloud Moni</h1>
+        <p>Regístrate por favor para iniciar</p>
+        <form id="registro-form" novalidate>
+            <input type="text" id="usuario" name="usuario" placeholder="Usuario (3-15 caracteres)"
+                   minlength="3" maxlength="15" required>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre completo"
+                   pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+" required>
+            <input type="password" id="clave" name="clave" placeholder="Contraseña (mínimo 6 caracteres)"
+                   minlength="6" required>
+            <input type="text" id="direccion" name="direccion" placeholder="Dirección" required>
+            <input type="tel" id="telefono" name="telefono" placeholder="Teléfono (sin guión)"
+                   pattern="\d{8}" required>
+            <span class="error-message" id="error-message"></span>
+            <button type="submit">Registrarse</button>
+            <button type="button" class="cancel-btn" onclick="cancelar()">Cancelar</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registro-form');
+        const errorMessage = document.getElementById('error-message');
+
+        window.onload = function () {
+            const idUsuario = localStorage.getItem('idUsuario');
+            if (idUsuario) {
+                window.location.href = 'https://localhost:7081/views/rastreador.html';
+            }
+        };
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                errorMessage.textContent = "Por favor, corrige los errores antes de enviar.";
+                return;
+            }
+
+            const usuario = document.getElementById("usuario").value.trim();
+            const nombre = document.getElementById("nombre").value.trim();
+            const clave = document.getElementById("clave").value.trim();
+            const direccion = document.getElementById("direccion").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
+
+            const userData = {
+                usuario,
+                nombre,
+                clave,
+                direccion,
+                telefono
+            };
+
+            try {
+                const response = await fetch('https://localhost:7081/api/Usuarios', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('idUsuario', data.idUsuario);
+                    window.location.href = 'https://localhost:7081/views/rastreador.html';
+                } else {
+                    const result = await response.json();
+                    errorMessage.textContent = result.message || 'Hubo un problema al registrar al usuario.';
+                }
+            } catch (error) {
+                console.error("Error en la solicitud: ", error);
+                errorMessage.textContent = 'Error en la conexión.';
+            }
+        });
+
+        function cancelar() {
+            window.location.href = 'https://localhost:7081/views/login.html';
+        }
+    </script>
+</body>
+</html>
